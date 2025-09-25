@@ -1,0 +1,177 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swaroop — Advanced Profile</title>
+  <meta name="description" content="Advanced single-file profile page for Swaroop with interactive sections, audio, video, login modal and contact form.">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#98a2b3; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.03);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071022 0%, #07192b 100%);color:#e6eef8}
+    a{color:var(--accent);text-decoration:none}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px)}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#5b21b6,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:8px;font-size:14px;color:var(--muted)}
+    nav a.primary{background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.06));color:#fff}
+
+    .container{max-width:1100px;margin:28px auto;padding:20px}
+    .profile-card{display:grid;grid-template-columns:260px 1fr;gap:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:22px;border:1px solid var(--glass)}
+
+    /* left column */
+    .avatar-wrap{text-align:center;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .avatar{width:160px;height:160px;border-radius:18px;display:inline-block;overflow:hidden;border:4px solid rgba(255,255,255,0.04);background:linear-gradient(135deg,#0ea5a7,#7c3aed)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .name{font-size:22px;font-weight:700;margin-top:12px}
+    .role{color:var(--muted);font-size:13px;margin-top:6px}
+    .socials{display:flex;gap:10px;justify-content:center;margin-top:12px}
+    .socials a{width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:var(--glass)}
+    .meta{margin-top:16px;text-align:left;font-size:14px;color:var(--muted)}
+
+    /* right column */
+    .headline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .intro{line-height:1.6;color:#cfe6ff}
+    .actions{display:flex;gap:10px}
+    button{cursor:pointer;border:0;padding:10px 14px;border-radius:10px;background:var(--glass);color:#eaf4ff}
+    button.cta{background:linear-gradient(90deg,#7c3aed,#06b6d4);box-shadow:0 6px 18px rgba(7,12,22,0.6)}
+
+    section{margin-top:18px}
+    .card{background:transparent;padding:16px;border-radius:12px;border:1px solid var(--glass-2)}
+
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{flex:1 1 200px}
+    .progress{height:10px;border-radius:999px;background:rgba(255,255,255,0.03);overflow:hidden}
+    .progress > i{display:block;height:100%;border-radius:999px}
+
+    .timeline{display:flex;flex-direction:column;gap:10px}
+    .tl-item{display:flex;gap:12px}
+    .tl-item .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:6px}
+
+    .media{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .media video, .media audio{width:100%;border-radius:8px}
+
+    footer{margin-top:18px;padding:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* contact form */
+    form .row{display:flex;gap:10px}
+    input, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+
+    /* responsive */
+    @media (max-width:880px){.profile-card{grid-template-columns:1fr;}.avatar{width:120px;height:120px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">S</div>
+      <div>
+        <div style="font-weight:700">Swaroop</div>
+        <div style="font-size:12px;color:var(--muted)">Full‑Stack Developer • Designer • Open Source</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#media">Media</a>
+      <a class="primary" href="#contact">Contact</a>
+      <a href="#" id="loginBtn">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="profile-card">
+      <aside>
+        <div class="avatar-wrap card">
+          <div class="avatar" id="avatar">
+            <!-- placeholder SVG avatar. Replace src with your image if you want -->
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-size='220' fill='%23ffffff' font-family='Arial'>S</text></svg>" alt="Swaroop">
+          </div>
+          <div class="name">Swaroop</div>
+          <div class="role">Full‑Stack Developer & Designer</div>
+
+          <div class="socials">
+            <a href="#" title="GitHub" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.58 2 12.17c0 4.5 2.87 8.33 6.84 9.68.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.35-3.37-1.35-.46-1.18-1.12-1.5-1.12-1.5-.91-.63.07-.62.07-.62 1.01.07 1.54 1.06 1.54 1.06.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0112 6.8c.85.004 1.71.12 2.51.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.37.2 2.39.1 2.64.64.72 1.03 1.64 1.03 2.76 0 3.94-2.35 4.8-4.59 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.59.69.49A10.01 10.01 0 0022 12.17C22 6.58 17.52 2 12 2z" fill="white"/></svg>
+            </a>
+            <a href="#" title="LinkedIn" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4zM8.5 8h3.83v2.16h.05c.53-1 1.82-2.16 3.75-2.16C20.68 8 22 10.02 22 13.2V24h-4v-9.1c0-2.17-.04-4.96-3.02-4.96-3.02 0-3.48 2.36-3.48 4.78V24h-4z" fill="white"/></svg>
+            </a>
+            <a href="#" title="Twitter" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.75c-.63.28-1.3.47-2 .56a3.48 3.48 0 001.52-1.92c-.66.4-1.4.7-2.18.86A3.46 3.46 0 0015.5 4c-1.9 0-3.45 1.57-3.45 3.5 0 .28.03.56.09.82C8.1 8.19 5.1 6.4 3.1 3.7c-.31.54-.48 1.16-.48 1.83 0 1.26.64 2.38 1.62 3.03-.6-.02-1.17-.19-1.66-.46v.05c0 1.7 1.2 3.13 2.8 3.46-.48.13-.99.18-1.52.07.43 1.35 1.67 2.33 3.14 2.36A6.96 6.96 0 012 19.54 9.83 9.83 0 008.56 22c6.5 0 10.06-5.3 10.06-9.9v-.45c.68-.47 1.26-1.06 1.72-1.73-.62.28-1.28.47-1.96.56z" fill="white"/></svg>
+            </a>
+          </div>
+
+          <div class="meta">
+            <div><strong>Location:</strong> India</div>
+            <div><strong>Email:</strong> <a href="mailto:swaroop@example.com">swaroop@example.com</a></div>
+            <div><strong>Website:</strong> <a href="#">swaroop.dev</a></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="card">
+          <div style="font-weight:700;margin-bottom:8px">Quick Stats</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div style="min-width:100px;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px"><div style="font-weight:700">120+</div><div style="color:var(--muted);font-size:13px">Projects</div></div>
+            <div style="min-width:100px;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px"><div style="font-weight:700">8 yrs</div><div style="color:var(--muted);font-size:13px">Experience</div></div>
+            <div style="min-width:100px;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px"><div style="font-weight:700">50+</div><div style="color:var(--muted);font-size:13px">Open Source</div></div>
+          </div>
+        </div>
+      </aside>
+
+      <section>
+        <div class="headline">
+          <div style="flex:1">
+            <div style="font-size:18px;font-weight:700">Hello, I'm Swaroop 👋</div>
+            <div class="intro">I build beautiful and performant web applications. I design delightful user experiences and ship high-quality code. Passionate about open-source, mentorship and learning new technologies.</div>
+
+            <div style="margin-top:12px" class="actions">
+              <button class="cta" onclick="downloadCV()">Download CV</button>
+              <button onclick="openContact()">Message</button>
+              <a href="#work"><button>See Work</button></a>
+            </div>
+          </div>
+
+          <div style="width:220px;text-align:right">
+            <div style="font-size:12px;color:var(--muted)">Hourly Rate</div>
+            <div style="font-weight:700;font-size:20px">$25/hr</div>
+            <div style="margin-top:12px;color:var(--muted);font-size:13px">Available for freelance & remote roles</div>
+          </div>
+        </div>
+
+        <section id="about" class="card">
+          <h3 style="margin:0 0 8px 0">About</h3>
+          <p style="margin:0 0 8px 0;color:var(--muted)">Experienced full-stack engineer with a strong background in JavaScript, Node.js, React, and modern CSS. I focus on performance, accessibility, and maintainable architecture.</p>
+
+          <div style="margin-top:12px">
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <div class="skill card" style="padding:10px">
+                <div style="font-weight:700">Front-End</div>
+                <div class="progress" style="margin-top:8px"><i style="width:92%;background:linear-gradient(90deg,#06b6d4,#7c3aed)"></i></div>
+              </div>
+              <div class="skill card" style="padding:10px">
+                <div style="font-weight:700">Back-End</div>
+                <div class="progress" style="margin-top:8px"><i style="width:84%;background:linear-gradient(90deg,#06b6d4,#7c3aed)"></i></div>
+              </div>
+              <div class="skill card" style="padding:10px">
+                <div style="font-weight:700">UI / UX</div>
+                <div class="progress" style="margin-top:8px"><i style="width:78%;background:linear-gradient(90deg,#06b6d4,#7c3aed)"></i></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" class="card" style="margin-top:12px">
+          <h3 style="margin:0 0 8px 0">Work & Experience</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div style="min-width:120px;color:var(--muted)"><strong>2021–Now</strong><div style="font-s
